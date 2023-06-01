@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Мой сайт</title>
+    <style>
+        body {
+            background-color: beige;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 100px;
+        }
+        
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="mgtu_stankin.jpg" alt="МГТУ СТАНКИН">
+        <h1> Андрей Зайцев</h1>
+        <a href="TakeshyKowach1.html" class="btn">Резюме</a>
+          <body>
+<html>
+  <head>
+    <title>Автообновление каждые 10 секунд</title>
+    <script>
+            function autoRefresh() {
+              myFunction();
+        setTimeout(autoRefresh, 10000);
+      }
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      function myFunction() {
+        (async () => {
+          let response = await fetch(
+            "https://kav-api.kovalev.team/servodrive/lastActualData?servoDriveId=1"
+          );
+          let el = document.getElementById("demo");
+          el.innerHTML = "";
+          let text = await response.text(); // прочитать тело ответа как текст
+          for (const [key, value] of Object.entries(JSON.parse(text)[0])) {
+            const newEl = document.createElement("li");
+            newEl.appendChild(
+              document.createTextNode(`${key}: ${value}`)
+            );
+            el.appendChild(newEl);
+            await sleep(100);
+          }
+        })();
+      }
+
+          window.onload = function () {
+        autoRefresh();
+      };
+    </script>
+  </head>
+  <body>
+    <div class="main">
+      <h2>Даннные со станка</h2>
+      <button class="btn" onclick="myFunction()">Нажми чтобы включить обновление</button>
+      <ul id="demo"></ul>
+    </div>
+  </body>
+</html>
+    </body>
+    </html>
